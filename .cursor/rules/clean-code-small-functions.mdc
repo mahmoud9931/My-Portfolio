@@ -1,0 +1,68 @@
+---
+description: Enforce clean code and small, focused functions
+alwaysApply: true
+---
+
+# Clean Code and Small Functions
+
+## Core Principles
+
+- Prefer small functions that do one thing well.
+- Keep functions easy to scan and reason about.
+- Use clear, intention-revealing names for variables and functions.
+- Avoid deeply nested conditionals; use early returns when possible.
+- Remove dead code and avoid commented-out code blocks.
+
+## Function Guidelines
+
+- Aim for short functions (roughly 5-20 lines when practical).
+- Extract repeated logic into helper functions.
+- Pass only the data a function needs.
+- Keep side effects explicit and localized.
+
+## Naming
+
+- Use descriptive names (`calculateTotalPrice`) over vague ones (`doStuff`).
+- Boolean names should read like questions (`isLoading`, `hasAccess`).
+- Avoid abbreviations unless they are standard and obvious.
+
+## Example
+
+```javascript
+// ❌ Too much responsibility in one function
+function submitForm(data) {
+  if (!data.email) return;
+  const email = data.email.trim().toLowerCase();
+  if (!email.includes("@")) return;
+  const payload = { ...data, email };
+  localStorage.setItem("draft", JSON.stringify(payload));
+  return fetch("/api/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+// ✅ Smaller functions with clear intent
+function normalizeEmail(email) {
+  return email.trim().toLowerCase();
+}
+
+function isValidEmail(email) {
+  return email.includes("@");
+}
+
+async function submitForm(data) {
+  if (!data.email) return;
+  const email = normalizeEmail(data.email);
+  if (!isValidEmail(email)) return;
+
+  const payload = { ...data, email };
+  localStorage.setItem("draft", JSON.stringify(payload));
+  return fetch("/api/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+```

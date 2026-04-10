@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+:root {
+    --color-bg: #14172b;
+    --color-bg-variant: #1d2340;
+    --color-primary: #5ec4ff;
+    --color-primary-variant: rgba(94, 196, 255, 0.28);
+    --color-white: #ffffff;
+    --color-light: rgba(235, 240, 255, 0.72);
+    --color-text-strong: #f5f8ff;
+    --color-card-border: rgba(255, 255, 255, 0.08);
+    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.22);
+    --shadow-card: 0 10px 26px rgba(10, 15, 40, 0.32);
+    --radius-sm: 0.6rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.4rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --transition: all 0.3s ease;
+    --motion-fast: 220ms;
+    --motion-normal: 360ms;
+    --motion-slow: 540ms;
+    --easing-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --reveal-distance: 24px;
+}
+
+body {
+    font-family: "Poppins", "Arima", system-ui, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-white);
+    line-height: 1.6;
+    background-image: url('./assets/bg-texture.png');
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    width: min(1140px, 86%);
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-text-strong);
+}
+
+h1 {
+    font-size: clamp(2rem, 3vw, 3.1rem);
+}
+
+section {
+    padding-top: 7rem;
+}
+
+.text-light {
+    color: var(--color-light);
+}
+
+a {
+    color: var(--color-primary);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--color-white);
+}
+
+.btn {
+    width: max-content;
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 1px solid var(--color-primary);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn:hover {
+    background: var(--color-white);
+    color: var(--color-bg);
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-bg);
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.surface-card {
+    background: var(--color-bg-variant);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition:
+        opacity var(--motion-normal) var(--easing-standard),
+        transform var(--motion-normal) var(--easing-standard);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hover-lift {
+    transition: transform var(--motion-fast) var(--easing-standard), box-shadow var(--motion-fast) var(--easing-standard), border-color var(--motion-fast) var(--easing-standard);
+}
+
+.hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-soft);
+}
+
+.top-section h2 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 2.2rem;
+    letter-spacing: 0.3px;
+}
+
+.top-section h5 {
+    text-align: center;
+    color: var(--color-light);
+    margin-bottom: 0.4rem;
+}
+
+input:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+    }
+
+    .reveal,
+    .reveal.is-visible,
+    .hover-lift,
+    .hover-lift:hover,
+    .btn:hover {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Tablet */
+@media (max-width:1024px) {
+    .container {
+        width: 90%;
+    }
+
+    section {
+        padding-top: 6.5rem;
+    }
+
+}
+/* Mobile */
+@media (max-width:600px) {
+    .container {
+        width: 92%;
+    }
+
+    section {
+        padding-top: 5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .top-section h2 {
+        margin-bottom: 1.8rem;
+    }
+
+}
