@@ -1,9 +1,11 @@
 import './Projects.css'
+import project1 from '../../assets/my-portfolio.png'
 import project2 from '../../assets/2.png'
 import project3 from '../../assets/3.png'
 import project4 from '../../assets/4.png'
 import project5 from '../../assets/5.png'
 import useReveal from '../../hooks/useReveal'
+
 
 export default function Projects() {
   const sectionRef = useReveal();
@@ -11,13 +13,13 @@ export default function Projects() {
   const portfolioData = [
     {
       id: 10,
-      image: project2,
-      title: 'Prayer App',
-      stack: ['React', 'JavaScript', 'API'],
+      image: project1,
+      title: 'My-Portfolio',
+      stack: ['React', 'JavaScript'],
       role: 'Frontend Developer',
-      outcome: 'Built a clean prayer-time dashboard with fast navigation and responsive layouts.',
-      github: 'https://github.com/mahmoud9931/Prayer',
-      demo: 'https://prayer-inky.vercel.app/'
+      outcome: 'A modern portfolio showcasing my frontend projects and skills with a clean and responsive design.',
+      github: 'https://github.com/mahmoud9931/My-Portfolio',
+      demo: 'https://my-portfolio-iota-nine-88.vercel.app/'
     },
   {
     id: 1,
@@ -25,7 +27,7 @@ export default function Projects() {
     title: 'Prayer App',
     stack: ['React', 'JavaScript', 'API'],
     role: 'Frontend Developer',
-    outcome: 'Built a clean prayer-time dashboard with fast navigation and responsive layouts.',
+    outcome: 'A responsive Prayer Times web app built with React, focusing on clean code, and a simple, user-friendly interface.',
     github: 'https://github.com/mahmoud9931/Prayer',
     demo: 'https://prayer-inky.vercel.app/'
   },
@@ -84,7 +86,7 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="project_item_btns">
-                  <a href={github} className='btn' target='_blank' rel='noopener noreferrer'>Code</a>
+                  <a href={github} className='btn' target='_blank' rel='noopener noreferrer'>GitHub</a>
                   <a href={demo} className='btn btn-primary' target='_blank' rel='noopener noreferrer'>Live Demo</a>
                 </div>
               </article>
