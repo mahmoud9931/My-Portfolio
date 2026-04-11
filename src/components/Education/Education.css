@@ -1,0 +1,154 @@
+.education__container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+}
+
+.education__rail {
+  position: absolute;
+  left: 0.45rem;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition:
+    transform var(--motion-slow) var(--easing-standard),
+    opacity var(--motion-normal) var(--easing-standard);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 80ms);
+}
+
+.education.reveal.is-visible .education__rail {
+  transform: scaleY(1);
+  opacity: 0.85;
+}
+
+.education__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.education__item {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.25rem 1.6rem;
+  text-align: left;
+  transform: translateY(18px);
+  opacity: 0;
+  transition:
+    opacity var(--motion-normal) var(--easing-standard),
+    transform var(--motion-normal) var(--easing-standard),
+    border-color var(--motion-fast) var(--easing-standard),
+    box-shadow var(--motion-fast) var(--easing-standard);
+}
+
+.education.reveal.is-visible .education__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.education.reveal.is-visible .education__item:nth-child(1) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+}
+
+.education.reveal.is-visible .education__item:nth-child(2) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 200ms);
+}
+
+.education.reveal.is-visible .education__item:nth-child(3) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 280ms);
+}
+
+.education__dot {
+  position: absolute;
+  left: -1.15rem;
+  top: 1.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-bg) 70%, transparent);
+  animation: educationDotPulse 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--edu-index, 0) * 350ms);
+}
+
+.education__period {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.education__school {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-strong);
+}
+
+.education__title {
+  font-size: 0.92rem;
+  color: var(--color-light);
+  margin-bottom: 0.65rem;
+}
+
+.education__description {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+@keyframes educationDotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-bg) 70%, transparent);
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--color-bg) 70%, transparent),
+      0 0 14px var(--color-primary-variant);
+  }
+}
+
+@media (max-width: 600px) {
+  .education__container {
+    padding-left: 1.1rem;
+  }
+
+  .education__rail {
+    left: 0.35rem;
+  }
+
+  .education__dot {
+    left: -1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .education__rail {
+    transform: scaleY(1) !important;
+    opacity: 0.75 !important;
+    transition: none !important;
+  }
+
+  .education__item,
+  .education.reveal.is-visible .education__item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .education__dot {
+    animation: none !important;
+  }
+}

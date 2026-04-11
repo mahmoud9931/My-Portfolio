@@ -90,6 +90,42 @@
     color: #ff9b9b;
 }
 
+.contact.reveal .contact_option {
+    transform: translateY(14px);
+    transition: transform var(--motion-normal) var(--easing-standard);
+}
+
+.contact.reveal.is-visible .contact_option {
+    transform: translateY(0);
+}
+
+.contact.reveal.is-visible .contact_option:nth-child(1) {
+    transition-delay: calc(var(--reveal-delay, 0ms) + 55ms);
+}
+
+.contact.reveal.is-visible .contact_option:nth-child(2) {
+    transition-delay: calc(var(--reveal-delay, 0ms) + 115ms);
+}
+
+.contact.reveal .contact_container > form {
+    transform: translateY(18px);
+    transition: transform var(--motion-normal) var(--easing-standard);
+}
+
+.contact.reveal.is-visible .contact_container > form {
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-delay, 0ms) + 190ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact.reveal .contact_option,
+    .contact.reveal.is-visible .contact_option,
+    .contact.reveal .contact_container > form,
+    .contact.reveal.is-visible .contact_container > form {
+        transform: none !important;
+        transition: none !important;
+    }
+}
 
 @media (max-width: 1024px) {
     .contact_container {

@@ -56,7 +56,7 @@ export default function Contact() {
             setStatus('success');
             setFeedback('Thanks! Your message has been sent successfully.');
             resetForm();
-        } catch (error) {
+        } catch {
             setStatus('error');
             setFeedback('Something went wrong while sending. Please try again.');
         }
@@ -79,7 +79,7 @@ export default function Contact() {
     ]
 
     return (
-        <section className='contact reveal' id='contact' ref={sectionRef}>
+        <section className='contact reveal reveal--from-right' id='contact' ref={sectionRef} style={{ '--reveal-delay': '110ms' }}>
             <div className="top-section">
                 <h5>Get In Touch</h5>
                 <h2>Contact Me</h2>

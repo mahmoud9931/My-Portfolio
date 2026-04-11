@@ -64,7 +64,7 @@ export default function Projects() {
 ];
 
   return (
-    <section className='projects reveal' id='projects' ref={sectionRef}>
+    <section className='projects reveal' id='projects' ref={sectionRef} style={{ '--reveal-delay': '90ms' }}>
       <div className="top-section">
         <h5>My Recent Work</h5>
         <h2>My Projects</h2>

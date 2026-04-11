@@ -12,7 +12,7 @@ export default function About() {
     const sectionRef = useReveal();
 
     return (
-        <section className='about reveal' id='about' ref={sectionRef}>
+        <section className='about reveal' id='about' ref={sectionRef} style={{ '--reveal-delay': '0ms' }}>
             <div className="top-section">
                 <h5>Get To Know</h5>
                 <h2>About Me</h2>

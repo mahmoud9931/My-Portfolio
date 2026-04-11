@@ -7,11 +7,22 @@
   width: 100%;
   padding: 14px;
   border-radius: 20px;
-  transition: var(--transition);
+  transition:
+    border-color var(--motion-fast) var(--easing-standard),
+    box-shadow var(--motion-fast) var(--easing-standard),
+    transform var(--motion-fast) var(--easing-standard);
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
+}
+
+.projects_container .project_item:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-card-border));
+  box-shadow:
+    var(--shadow-card),
+    inset 0 0 48px color-mix(in srgb, var(--color-primary) 14%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-primary) 18%, transparent);
 }
 
 
@@ -45,7 +56,7 @@
 }
 
 .project_stack span {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-hover-surface);
   border: 1px solid var(--color-card-border);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
@@ -59,8 +70,51 @@
   margin-bottom: 8px;
 }
 
+.projects.reveal .projects_container .project_item {
+  transform: translateY(20px);
+  transition: transform var(--motion-normal) var(--easing-standard);
+}
 
+.projects.reveal.is-visible .projects_container .project_item {
+  transform: translateY(0);
+}
 
+.projects.reveal.is-visible .projects_container .project_item:nth-child(1) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 50ms);
+}
+
+.projects.reveal.is-visible .projects_container .project_item:nth-child(2) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 110ms);
+}
+
+.projects.reveal.is-visible .projects_container .project_item:nth-child(3) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 170ms);
+}
+
+.projects.reveal.is-visible .projects_container .project_item:nth-child(4) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 230ms);
+}
+
+.projects.reveal.is-visible .projects_container .project_item:nth-child(5) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 290ms);
+}
+
+.projects.reveal.is-visible .projects_container .project_item:nth-child(6) {
+  transition-delay: calc(var(--reveal-delay, 0ms) + 350ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects.reveal .projects_container .project_item,
+  .projects.reveal.is-visible .projects_container .project_item {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .projects_container .project_item:hover {
+    box-shadow: var(--shadow-card) !important;
+    border-color: var(--color-card-border) !important;
+  }
+}
 
 @media (max-width: 1024px) {
   .projects_container{

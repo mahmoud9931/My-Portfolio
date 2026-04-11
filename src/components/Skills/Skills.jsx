@@ -27,7 +27,7 @@ export default function Skills() {
         { id: 9, name: 'Figma', img: figma },
     ]
     return (
-        <section id="skills" className='reveal' ref={sectionRef}>
+        <section id="skills" className='reveal' ref={sectionRef} style={{ '--reveal-delay': '40ms' }}>
             <div className="top-section">
                 <h5>What Skills I Have</h5>
                 <h2>Technical Skills</h2>

@@ -10,7 +10,7 @@ export default function Services() {
   const sectionRef = useReveal();
 
   return (
-    <section id='services' className='reveal' ref={sectionRef}>
+    <section id='services' className='reveal reveal--from-left' ref={sectionRef} style={{ '--reveal-delay': '70ms' }}>
       <div className="top-section">
         <h5>What I Offer</h5>
         <h2>Services</h2>

@@ -8,22 +8,26 @@
     text-decoration: none;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
 
 :root {
-    --color-bg: #14172b;
-    --color-bg-variant: #1d2340;
-    --color-primary: #5ec4ff;
-    --color-primary-variant: rgba(94, 196, 255, 0.28);
+    --color-bg: #060910;
+    --color-bg-variant: #121a2e;
+    --color-primary: #00e5ff;
+    --color-accent: #b24bff;
+    --color-accent-glow: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    --color-primary-variant: color-mix(in srgb, var(--color-primary) 35%, transparent);
     --color-white: #ffffff;
-    --color-light: rgba(235, 240, 255, 0.72);
-    --color-text-strong: #f5f8ff;
-    --color-card-border: rgba(255, 255, 255, 0.08);
-    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.22);
-    --shadow-card: 0 10px 26px rgba(10, 15, 40, 0.32);
+    --color-light: rgba(230, 238, 255, 0.78);
+    --color-text-strong: #f8faff;
+    --color-card-border: rgba(255, 255, 255, 0.12);
+    --color-hover-surface: rgba(255, 255, 255, 0.1);
+    --nav-bg: color-mix(in srgb, var(--color-bg) 58%, transparent);
+    --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.45);
+    --shadow-card: 0 14px 36px rgba(0, 8, 24, 0.55);
     --radius-sm: 0.6rem;
     --radius-md: 1rem;
     --radius-lg: 1.4rem;
@@ -38,6 +42,7 @@ html{
     --motion-slow: 540ms;
     --easing-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
     --reveal-distance: 24px;
+    --reveal-delay: 0ms;
 }
 
 body {
@@ -45,9 +50,12 @@ body {
     background-color: var(--color-bg);
     color: var(--color-white);
     line-height: 1.6;
-    background-image: url('./assets/bg-texture.png');
-    background-attachment: fixed;
     text-rendering: optimizeLegibility;
+}
+
+.app-main {
+    position: relative;
+    z-index: 1;
 }
 
 .container {
@@ -94,7 +102,12 @@ a:hover {
     border-radius: var(--radius-sm);
     cursor: pointer;
     border: 1px solid var(--color-primary);
-    transition: var(--transition);
+    transition:
+        transform var(--motion-fast) var(--easing-standard),
+        background var(--motion-fast) var(--easing-standard),
+        color var(--motion-fast) var(--easing-standard),
+        border-color var(--motion-fast) var(--easing-standard),
+        box-shadow var(--motion-fast) var(--easing-standard);
     font-weight: 500;
 }
 
@@ -103,11 +116,18 @@ a:hover {
     color: var(--color-bg);
     border-color: transparent;
     transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
 
 .btn-primary {
-    background: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 55%, var(--color-primary)));
     color: var(--color-bg);
+    border-color: transparent;
+}
+
+.btn-primary:hover {
+    color: var(--color-bg);
+    background: linear-gradient(135deg, var(--color-white), color-mix(in srgb, var(--color-primary) 35%, var(--color-white)));
 }
 
 img {
@@ -127,8 +147,8 @@ img {
     opacity: 0;
     transform: translateY(var(--reveal-distance));
     transition:
-        opacity var(--motion-normal) var(--easing-standard),
-        transform var(--motion-normal) var(--easing-standard);
+        opacity var(--motion-normal) var(--easing-standard) var(--reveal-delay, 0ms),
+        transform var(--motion-normal) var(--easing-standard) var(--reveal-delay, 0ms);
 }
 
 .reveal.is-visible {
@@ -136,20 +156,83 @@ img {
     transform: translateY(0);
 }
 
+.reveal.reveal--from-left {
+    transform: translateX(calc(-1 * var(--reveal-distance)));
+}
+
+.reveal.reveal--from-left.is-visible {
+    transform: translateX(0);
+}
+
+.reveal.reveal--from-right {
+    transform: translateX(var(--reveal-distance));
+}
+
+.reveal.reveal--from-right.is-visible {
+    transform: translateX(0);
+}
+
+.reveal .top-section h5,
+.reveal .top-section h2 {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+        opacity var(--motion-normal) var(--easing-standard),
+        transform var(--motion-normal) var(--easing-standard);
+}
+
+.reveal.is-visible .top-section h5 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-delay, 0ms) + 40ms);
+}
+
+.reveal.is-visible .top-section h2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--reveal-delay, 0ms) + 110ms);
+}
+
 .hover-lift {
-    transition: transform var(--motion-fast) var(--easing-standard), box-shadow var(--motion-fast) var(--easing-standard), border-color var(--motion-fast) var(--easing-standard);
+    transition:
+        transform var(--motion-fast) var(--easing-standard),
+        box-shadow var(--motion-fast) var(--easing-standard),
+        border-color var(--motion-fast) var(--easing-standard);
 }
 
 .hover-lift:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-soft), 0 0 0 1px color-mix(in srgb, var(--color-primary) 22%, transparent);
 }
 
 .top-section h2 {
     text-align: center;
-    color: var(--color-primary);
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-accent),
+        color-mix(in srgb, var(--color-white) 85%, var(--color-primary)),
+        var(--color-accent),
+        var(--color-primary)
+    );
+    background-size: 220% auto;
+    background-position: 0% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     margin-bottom: 2.2rem;
     letter-spacing: 0.3px;
+    animation: titleShimmer 9s ease-in-out infinite;
+}
+
+@keyframes titleShimmer {
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
 }
 
 .top-section h5 {
@@ -173,12 +256,27 @@ a:focus-visible {
 
     .reveal,
     .reveal.is-visible,
+    .reveal.reveal--from-left,
+    .reveal.reveal--from-left.is-visible,
+    .reveal.reveal--from-right,
+    .reveal.reveal--from-right.is-visible,
+    .reveal .top-section h5,
+    .reveal .top-section h2,
+    .reveal.is-visible .top-section h5,
+    .reveal.is-visible .top-section h2,
     .hover-lift,
     .hover-lift:hover,
-    .btn:hover {
+    .btn:hover,
+    nav a:hover {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+
+    .top-section h2 {
+        animation: none !important;
+        background-size: 100% auto !important;
+        background-position: center !important;
     }
 }
 
@@ -193,6 +291,7 @@ a:focus-visible {
     }
 
 }
+
 /* Mobile */
 @media (max-width:600px) {
     .container {

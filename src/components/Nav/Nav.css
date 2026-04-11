@@ -1,5 +1,5 @@
 nav{
-    background: rgba(15, 18, 32, 0.62);
+    background: var(--nav-bg);
     width: max-content;
     display: block;
     padding: .55rem 1.2rem;
@@ -26,19 +26,25 @@ nav a{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
+    transition:
+        transform var(--motion-fast) var(--easing-standard),
+        background var(--motion-fast) var(--easing-standard),
+        color var(--motion-fast) var(--easing-standard),
+        box-shadow var(--motion-fast) var(--easing-standard);
 }
 
 
 nav a.active{
-    background: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     color: var(--color-bg);
+    box-shadow: 0 0 20px var(--color-primary-variant);
 }
 
 
 nav a:hover{
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--color-hover-surface);
     color: var(--color-white);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 600px) {
@@ -50,5 +56,18 @@ nav a:hover{
     nav a {
         padding: .58rem;
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        gap: 0.35rem;
+        padding: 0.4rem 0.65rem;
+        max-width: calc(100vw - 1.25rem);
+    }
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.92rem;
     }
 }
