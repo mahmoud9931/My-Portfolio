@@ -1,5 +1,5 @@
 import './Projects.css'
-import project1 from '../../assets/my-portfolio.png'
+// import project1 from '../../assets/my-portfolio.png'
 import project2 from '../../assets/2.png'
 import project3 from '../../assets/3.png'
 import project4 from '../../assets/4.png'
@@ -11,16 +11,16 @@ export default function Projects() {
   const sectionRef = useReveal();
 
   const portfolioData = [
-    {
-      id: 10,
-      image: project1,
-      title: 'My-Portfolio',
-      stack: ['React', 'JavaScript'],
-      role: 'Frontend Developer',
-      outcome: 'A modern portfolio showcasing my frontend projects and skills with a clean and responsive design.',
-      github: 'https://github.com/mahmoud9931/My-Portfolio',
-      demo: 'https://my-portfolio-iota-nine-88.vercel.app/'
-    },
+    // {
+    //   id: 10,
+    //   image: project1,
+    //   title: 'My-Portfolio',
+    //   stack: ['React', 'JavaScript'],
+    //   role: 'Frontend Developer',
+    //   outcome: 'A modern portfolio showcasing my frontend projects and skills with a clean and responsive design.',
+    //   github: 'https://github.com/mahmoud9931/My-Portfolio',
+    //   demo: 'https://my-portfolio-iota-nine-88.vercel.app/'
+    // },
   {
     id: 1,
     image: project2,
